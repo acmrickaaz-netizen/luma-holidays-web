@@ -1,10 +1,25 @@
 import React, { useState } from 'react';
 import { 
   MapPin, Phone, Mail, ChevronRight, Star, 
-  Facebook, Twitter, Instagram, Play, 
   Compass, User, Clock, Map, 
   Download, TreePine, Droplets
 } from 'lucide-react';
+
+// ==========================================
+// INLINE SOCIAL ICONS (Bypasses Lucide missing exports)
+// ==========================================
+const FacebookIcon = ({ size = 24, className = "" }) => (
+  <svg xmlns="http://www.w3.org/2000/svg" width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+);
+const TwitterIcon = ({ size = 24, className = "" }) => (
+  <svg xmlns="http://www.w3.org/2000/svg" width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}><path d="M22 4s-.7 2.1-2 3.4c1.6 10-9.4 17.3-18 11.6 2.2.1 4.4-.6 6-2C3 15.5.5 9.6 3 5c2.2 2.6 5.6 4.1 9 4-.9-4.2 4-6.6 7-3.8 1.1 0 3-1.2 3-1.2z"/></svg>
+);
+const InstagramIcon = ({ size = 24, className = "" }) => (
+  <svg xmlns="http://www.w3.org/2000/svg" width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}><rect width="20" height="20" x="2" y="2" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" x2="17.51" y1="6.5" y2="6.5"/></svg>
+);
+const YoutubeIcon = ({ size = 24, className = "" }) => (
+  <svg xmlns="http://www.w3.org/2000/svg" width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}><path d="M2.5 7.1A2.8 2.8 0 0 1 5.3 4.3h13.4a2.8 2.8 0 0 1 2.8 2.8v9.8a2.8 2.8 0 0 1-2.8 2.8H5.3a2.8 2.8 0 0 1-2.8-2.8V7.1z"/><path d="m9.5 15.3 6-3.8-6-3.8v7.6z"/></svg>
+);
 
 // ==========================================
 // SHARED COMPONENTS (Used on multiple pages)
@@ -161,10 +176,10 @@ const Footer = () => (
           <div className="mt-10">
             <p className="text-gray-500 text-xs uppercase font-bold tracking-wider mb-3">Connect With Us</p>
             <div className="flex gap-4">
-              <a href="#" className="w-10 h-10 rounded-full border border-gray-600 flex items-center justify-center hover:bg-yellow-500 hover:text-black hover:border-yellow-500 transition"><Facebook size={18} /></a>
-              <a href="#" className="w-10 h-10 rounded-full border border-gray-600 flex items-center justify-center hover:bg-yellow-500 hover:text-black hover:border-yellow-500 transition"><Twitter size={18} /></a>
-              <a href="#" className="w-10 h-10 rounded-full border border-gray-600 flex items-center justify-center hover:bg-yellow-500 hover:text-black hover:border-yellow-500 transition"><Instagram size={18} /></a>
-              <a href="#" className="w-10 h-10 rounded-full border border-gray-600 flex items-center justify-center hover:bg-yellow-500 hover:text-black hover:border-yellow-500 transition"><Play size={18} /></a>
+              <a href="#" className="w-10 h-10 rounded-full border border-gray-600 flex items-center justify-center hover:bg-yellow-500 hover:text-black hover:border-yellow-500 transition"><FacebookIcon size={18} /></a>
+              <a href="#" className="w-10 h-10 rounded-full border border-gray-600 flex items-center justify-center hover:bg-yellow-500 hover:text-black hover:border-yellow-500 transition"><TwitterIcon size={18} /></a>
+              <a href="#" className="w-10 h-10 rounded-full border border-gray-600 flex items-center justify-center hover:bg-yellow-500 hover:text-black hover:border-yellow-500 transition"><InstagramIcon size={18} /></a>
+              <a href="#" className="w-10 h-10 rounded-full border border-gray-600 flex items-center justify-center hover:bg-yellow-500 hover:text-black hover:border-yellow-500 transition"><YoutubeIcon size={18} /></a>
             </div>
           </div>
         </div>
