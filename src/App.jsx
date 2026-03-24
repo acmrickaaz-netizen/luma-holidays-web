@@ -1,15 +1,54 @@
 import React, { useState } from 'react';
 import { 
   MapPin, Phone, Mail, ChevronRight, Star, 
-  Award, Facebook, Twitter, Instagram, Youtube, 
-  CheckCircle2, Navigation, User, Clock, Calendar, 
-  Users, FileText, Map, DollarSign, Globe2, 
-  Heart, Baby, Download, TreePine, Droplets, Gem, MessageCircle
+  Facebook, Twitter, Instagram, Youtube, 
+  Navigation, User, Clock, Map, 
+  Download, TreePine, Droplets
 } from 'lucide-react';
 
 // ==========================================
 // SHARED COMPONENTS (Used on multiple pages)
 // ==========================================
+
+const TourCard = ({ image, title, nights, days, price }) => (
+  <div className="bg-white rounded-lg overflow-hidden shadow-lg border border-gray-100 flex flex-col">
+    <div className="h-48 overflow-hidden relative">
+      <img src={image} alt={title} className="w-full h-full object-cover" />
+      <div className="absolute top-0 left-0 bg-yellow-400 text-xs font-bold px-3 py-1 rounded-br-lg">
+        {nights}N / {days}D
+      </div>
+    </div>
+    <div className="p-5 flex-grow flex flex-col justify-between text-center relative">
+        <div className="absolute -top-6 left-1/2 -translate-x-1/2 bg-white rounded-full p-2 shadow-md">
+            <div className="w-10 h-10 bg-yellow-400 rounded-full flex items-center justify-center text-white">
+                <Navigation size={20} />
+            </div>
+        </div>
+      <div className="mt-6">
+        <h3 className="font-bold text-lg mb-2">{title}</h3>
+        <p className="text-gray-500 text-sm mb-4">Starting from</p>
+        <p className="font-bold text-xl text-yellow-600 mb-4">{price}</p>
+      </div>
+      <button className="bg-gray-900 text-white py-2 px-4 rounded hover:bg-yellow-500 hover:text-black transition-colors text-sm font-semibold">
+        VIEW DETAILS
+      </button>
+    </div>
+  </div>
+);
+
+const IntlTourCard = ({ image, title, subtitle }) => (
+  <div className="relative h-80 rounded-lg overflow-hidden group cursor-pointer">
+    <img src={image} alt={title} className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" />
+    <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent"></div>
+    <div className="absolute bottom-0 w-full p-4 text-center">
+      <h3 className="text-yellow-400 font-bold text-xl uppercase tracking-wider">{title}</h3>
+      <p className="text-white text-sm">{subtitle}</p>
+      <button className="mt-3 bg-yellow-400 text-black text-xs font-bold py-1 px-4 rounded opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+        EXPLORE
+      </button>
+    </div>
+  </div>
+);
 
 const TopBar = () => (
   <div className="bg-black text-white text-xs py-1.5 px-4 flex justify-between items-center hidden md:flex">
