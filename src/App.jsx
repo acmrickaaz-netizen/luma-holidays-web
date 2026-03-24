@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import { 
   MapPin, Phone, Mail, ChevronRight, Star, 
-  Facebook, Twitter, Instagram, Youtube, 
-  Navigation, User, Clock, Map, 
+  Facebook, Twitter, Instagram, Play, 
+  Compass, User, Clock, Map, 
   Download, TreePine, Droplets
 } from 'lucide-react';
 
@@ -21,7 +21,7 @@ const TourCard = ({ image, title, nights, days, price }) => (
     <div className="p-5 flex-grow flex flex-col justify-between text-center relative">
         <div className="absolute -top-6 left-1/2 -translate-x-1/2 bg-white rounded-full p-2 shadow-md">
             <div className="w-10 h-10 bg-yellow-400 rounded-full flex items-center justify-center text-white">
-                <Navigation size={20} />
+                <Compass size={20} />
             </div>
         </div>
       <div className="mt-6">
@@ -164,7 +164,7 @@ const Footer = () => (
               <a href="#" className="w-10 h-10 rounded-full border border-gray-600 flex items-center justify-center hover:bg-yellow-500 hover:text-black hover:border-yellow-500 transition"><Facebook size={18} /></a>
               <a href="#" className="w-10 h-10 rounded-full border border-gray-600 flex items-center justify-center hover:bg-yellow-500 hover:text-black hover:border-yellow-500 transition"><Twitter size={18} /></a>
               <a href="#" className="w-10 h-10 rounded-full border border-gray-600 flex items-center justify-center hover:bg-yellow-500 hover:text-black hover:border-yellow-500 transition"><Instagram size={18} /></a>
-              <a href="#" className="w-10 h-10 rounded-full border border-gray-600 flex items-center justify-center hover:bg-yellow-500 hover:text-black hover:border-yellow-500 transition"><Youtube size={18} /></a>
+              <a href="#" className="w-10 h-10 rounded-full border border-gray-600 flex items-center justify-center hover:bg-yellow-500 hover:text-black hover:border-yellow-500 transition"><Play size={18} /></a>
             </div>
           </div>
         </div>
