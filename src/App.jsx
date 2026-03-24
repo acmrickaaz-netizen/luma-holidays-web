@@ -2,7 +2,8 @@ import React, { useState } from 'react';
 import { 
   MapPin, Phone, Mail, ChevronRight, Star, 
   Compass, User, Clock, Map, 
-  Download, TreePine, Droplets
+  Download, TreePine, Droplets,
+  Heart, Baby
 } from 'lucide-react';
 
 // ==========================================
@@ -474,6 +475,98 @@ const AsiaPage = ({ setCurrentPage }) => {
           </div>
         </div>
       </div>
+
+      {/* Visitor Statistics Section */}
+      <section className="mb-20">
+        <h2 className="text-[1.75rem] font-serif text-[#1e1e24] mb-8">Asia - Visitors Statistics</h2>
+        
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-y-10 gap-x-8 items-center bg-white border border-gray-100 rounded-xl p-8 shadow-sm">
+          
+          {/* Column 1: Map */}
+          <div className="flex justify-center md:border-r border-transparent">
+            <img 
+              src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/8c/Asia_blank_map.svg/800px-Asia_blank_map.svg.png" 
+              alt="Asia Map" 
+              className="w-full max-w-[180px]"
+              style={{ filter: 'brightness(0) saturate(100%) invert(18%) sepia(19%) saturate(1081%) hue-rotate(205deg) brightness(96%) contrast(89%)' }} 
+            />
+          </div>
+
+          {/* Column 2: Annually */}
+          <div className="md:border-l border-yellow-400 md:pl-8 h-full flex flex-col justify-center">
+            <h4 className="text-lg text-gray-800 mb-2 font-medium">Annually</h4>
+            <p className="text-4xl md:text-5xl font-bold text-[#1e1e24] mb-6 tracking-tight">10,00,00,000</p>
+            <div className="flex items-center gap-8">
+              <div className="flex items-center gap-3">
+                 <div className="text-yellow-400"><User size={32} className="fill-current" /></div>
+                 <div>
+                   <p className="text-xs text-gray-500 font-bold uppercase mb-0.5">Male</p>
+                   <p className="text-lg font-bold text-gray-800 leading-none">51%</p>
+                 </div>
+              </div>
+              <div className="flex items-center gap-3">
+                 <div className="text-[#3b3a4a]"><User size={32} className="fill-current" /></div>
+                 <div>
+                   <p className="text-xs text-gray-500 font-bold uppercase mb-0.5">Female</p>
+                   <p className="text-lg font-bold text-gray-800 leading-none">49%</p>
+                 </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Column 3: By Purpose */}
+          <div className="md:border-l border-yellow-400 md:pl-8 h-full flex flex-col justify-center">
+            <h4 className="text-lg text-gray-800 mb-6 font-medium">By Purpose</h4>
+            <div className="space-y-6">
+              <div>
+                <div className="flex items-center gap-4 mb-3">
+                  <div className="text-[#1e1e24]">
+                    <Heart size={24} strokeWidth={1.5} />
+                  </div>
+                  <div>
+                    <p className="font-bold text-[#1e1e24] leading-none mb-1">Couples</p>
+                    <p className="text-[13px] text-gray-500 leading-none">For Newlywed Vacations</p>
+                  </div>
+                </div>
+                <div className="w-full bg-gray-200 rounded-full h-1.5">
+                  <div className="bg-yellow-400 h-1.5 rounded-full" style={{ width: '85%' }}></div>
+                </div>
+              </div>
+              
+              <div>
+                <div className="flex items-center gap-4 mb-3">
+                  <div className="text-[#1e1e24]">
+                    <Baby size={24} strokeWidth={1.5} />
+                  </div>
+                  <div>
+                    <p className="font-bold text-[#1e1e24] leading-none mb-1">Family</p>
+                    <p className="text-[13px] text-gray-500 leading-none">For Family Vacations</p>
+                  </div>
+                </div>
+                <div className="w-full bg-gray-200 rounded-full h-1.5">
+                  <div className="bg-yellow-400 h-1.5 rounded-full" style={{ width: '60%' }}></div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Column 4: Top Visitors from Sri Lanka */}
+          <div className="md:border-l border-yellow-400 md:pl-8 h-full flex flex-col justify-center">
+            <h4 className="text-lg text-gray-800 mb-6 font-medium">Top Visitors from Sri Lanka</h4>
+            <ul className="grid grid-cols-2 gap-y-4 gap-x-4 text-[15px] text-[#1e1e24] font-medium">
+              <li className="flex items-center gap-2.5"><span className="w-2 h-2 rounded-full bg-yellow-400 shrink-0"></span> Colombo</li>
+              <li className="flex items-center gap-2.5"><span className="w-2 h-2 rounded-full bg-yellow-400 shrink-0"></span> Kandy</li>
+              <li className="flex items-center gap-2.5"><span className="w-2 h-2 rounded-full bg-yellow-400 shrink-0"></span> Gampaha</li>
+              <li className="flex items-center gap-2.5"><span className="w-2 h-2 rounded-full bg-yellow-400 shrink-0"></span> Galle</li>
+              <li className="flex items-center gap-2.5"><span className="w-2 h-2 rounded-full bg-yellow-400 shrink-0"></span> Negombo</li>
+              <li className="flex items-center gap-2.5"><span className="w-2 h-2 rounded-full bg-yellow-400 shrink-0"></span> Kurunegala</li>
+              <li className="flex items-center gap-2.5"><span className="w-2 h-2 rounded-full bg-yellow-400 shrink-0"></span> Jaffna</li>
+              <li className="flex items-center gap-2.5"><span className="w-2 h-2 rounded-full bg-yellow-400 shrink-0"></span> Matara</li>
+            </ul>
+          </div>
+
+        </div>
+      </section>
 
       {/* Tour Packages Grid */}
       <section className="mb-20">
