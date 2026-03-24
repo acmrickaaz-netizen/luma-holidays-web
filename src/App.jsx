@@ -239,6 +239,60 @@ const HomePage = ({ setCurrentPage }) => {
         </div>
       </section>
 
+      {/* Popular Tour Packages */}
+      <section className="bg-gray-100 py-16 px-4">
+        <div className="max-w-7xl mx-auto">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl font-bold mb-2 flex items-center justify-center gap-2">
+              <MapPin className="text-yellow-500" /> POPULAR TOUR PACKAGES
+            </h2>
+            <p className="text-gray-500 text-sm">Explore our top-rated travel packages</p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            <TourCard 
+              image="https://images.unsplash.com/photo-1537996194471-e657df975ab4?auto=format&fit=crop&q=80&w=600"
+              title="Beautiful Bali" price="$ 899" nights="4" days="5" 
+            />
+            <TourCard 
+              image="https://images.unsplash.com/photo-1552465011-b4e21bf6e79a?auto=format&fit=crop&q=80&w=600"
+              title="Amazing Thailand" price="$ 650" nights="5" days="6" 
+            />
+            <TourCard 
+              image="https://images.unsplash.com/photo-1525625293386-3f8f99389edd?auto=format&fit=crop&q=80&w=600"
+              title="Singapore Fling" price="$ 1,150" nights="3" days="4" 
+            />
+            <TourCard 
+              image="https://images.unsplash.com/photo-1528127269322-539801943592?auto=format&fit=crop&q=80&w=600"
+              title="Vietnam Vibes" price="$ 950" nights="6" days="7" 
+            />
+          </div>
+        </div>
+      </section>
+
+      {/* Trending Destinations */}
+      <section className="py-16 px-4 max-w-7xl mx-auto">
+        <h2 className="text-center text-3xl font-bold mb-12 uppercase">Trending Destinations</h2>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+          <IntlTourCard 
+            image="https://images.unsplash.com/photo-1522083111308-4122d2c1cb08?auto=format&fit=crop&q=80&w=600"
+            title="DUBAI" subtitle="City of Gold"
+          />
+          <IntlTourCard 
+            image="https://images.unsplash.com/photo-1540959733332-eab4deabeeaf?auto=format&fit=crop&q=80&w=600"
+            title="SINGAPORE" subtitle="Lion City"
+          />
+          <IntlTourCard 
+            image="https://images.unsplash.com/photo-1508009603885-50cf7cbf0d80?auto=format&fit=crop&q=80&w=600"
+            title="BALI" subtitle="Island of Gods"
+          />
+          <IntlTourCard 
+            image="https://images.unsplash.com/photo-1513622470522-26cb336d3e3f?auto=format&fit=crop&q=80&w=600"
+            title="EUROPE" subtitle="Grand Tour"
+          />
+        </div>
+      </section>
+
       {/* Reviews */}
       <section className="bg-gray-50 py-16 px-4">
         <div className="max-w-7xl mx-auto">
