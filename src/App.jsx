@@ -26,6 +26,24 @@ const YoutubeIcon = ({ size = 24, className = "" }) => (
 // SHARED COMPONENTS (Used on multiple pages)
 // ==========================================
 
+const MegaMenuSection = ({ title, items, highlight, onTitleClick }) => (
+  <div className="mb-6">
+    <h4 
+      onClick={onTitleClick}
+      className={`font-bold text-[15px] mb-3 ${highlight ? 'bg-[#FFCC00] py-1.5 px-3 -mx-3 text-black' : 'border-b border-gray-200 pb-1 text-gray-900'} ${onTitleClick ? 'cursor-pointer hover:bg-yellow-500 transition-colors' : ''}`}
+    >
+      {title}
+    </h4>
+    <ul className="space-y-1.5">
+      {items.map(item => (
+        <li key={item} className="flex items-center gap-2.5 text-[13px] text-gray-600 hover:text-black cursor-pointer group/item transition-colors">
+          <span className="w-[5px] h-[5px] bg-gray-400 rounded-full group-hover/item:bg-[#FFCC00] transition-colors shrink-0"></span> {item}
+        </li>
+      ))}
+    </ul>
+  </div>
+);
+
 const TourCard = ({ image, title, nights, days, price }) => (
   <div className="bg-white rounded-lg overflow-hidden shadow-lg border border-gray-100 flex flex-col">
     <div className="h-48 overflow-hidden relative">
@@ -66,6 +84,32 @@ const IntlTourCard = ({ image, title, subtitle }) => (
   </div>
 );
 
+const TourPackageCard = ({ image, title, duration }) => (
+  <div className="bg-white rounded-lg overflow-hidden shadow-sm border border-gray-100 group cursor-pointer hover:shadow-md transition-shadow">
+    <div className="h-48 overflow-hidden relative">
+      <img src={image} alt={title} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+    </div>
+    <div className="p-4">
+      <h3 className="font-bold text-gray-800 text-sm mb-3 leading-snug group-hover:text-yellow-600 transition-colors">{title}</h3>
+      <div className="flex items-center gap-2 text-yellow-500 text-xs font-semibold">
+        <Clock size={14} /><span>{duration}</span>
+      </div>
+    </div>
+  </div>
+);
+
+const PopularDestinationCard = ({ image, title, className }) => (
+  <div className={`relative group overflow-hidden cursor-pointer ${className}`}>
+    <img src={image} alt={title} className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" />
+    <div className="absolute inset-0 bg-black/30 group-hover:bg-black/50 transition-colors duration-300"></div>
+    <div className="absolute inset-0 flex items-center justify-center">
+      <h3 className="text-white text-xl md:text-3xl font-serif font-bold tracking-wide drop-shadow-lg text-center px-4">
+        {title} <br/> <span className="text-yellow-400 text-sm md:text-lg font-sans uppercase tracking-widest mt-2 block opacity-0 group-hover:opacity-100 transition-opacity duration-300">Explore</span>
+      </h3>
+    </div>
+  </div>
+);
+
 const TopBar = () => (
   <div className="bg-black text-white text-xs py-1.5 px-4 flex justify-between items-center hidden md:flex">
     <div className="flex gap-4">
@@ -79,46 +123,104 @@ const TopBar = () => (
   </div>
 );
 
-const Navbar = ({ currentPage, setCurrentPage }) => (
-  <nav className="bg-white sticky top-0 z-50 shadow-sm border-b border-gray-100">
-    <div className="max-w-7xl mx-auto flex justify-between items-center h-20">
-      {/* Logo Area */}
-      <div 
-        onClick={() => setCurrentPage('home')}
-        className="bg-[#FFCC00] h-full flex items-center justify-center px-8 cursor-pointer"
-      >
-        <div className="text-black font-black text-2xl tracking-tighter leading-none flex flex-col items-center">
-          <span>LUMA HOLIDAYS</span>
-          <span className="text-[10px] tracking-widest font-normal uppercase mt-1">Sri Lanka's No.1</span>
+const Navbar = ({ currentPage, setCurrentPage }) => {
+  const africa = ['Kenya', 'Morocco', 'Seychelles', 'South Africa', 'Zimbabwe', 'Tanzania'];
+  const america = ['Alaska', 'Canada', 'Central America', 'North America', 'South America', 'USA'];
+  const pacific = ['Australia', 'Fiji', 'New Zealand'];
+  const asia = ['Bali', 'Cambodia', 'China', 'Hong Kong', 'Japan', 'Indonesia', 'Kazakhstan', 'Russia', 'South Korea', 'Malaysia', 'Singapore', 'Philippines', 'Taiwan', 'Thailand', 'Vietnam', 'Uzbekistan'];
+  const europe = ['Austria', 'Belgium', 'Bulgaria', 'Croatia', 'Czech Republic', 'Denmark Republic', 'Finland Republic', 'France', 'Germany', 'Greece', 'Greenland', 'Hungary', 'Iceland', 'Ireland', 'Italy', 'London', 'Netherlands', 'Norway', 'Portugal', 'Romania', 'Russia', 'Slovakia', 'Spain', 'Sweden', 'Switzerland', 'Turkey', 'United Kingdom'];
+  const island = ['Madagascar', 'Maldives', 'Mauritius', 'Reunion', 'Sri Lanka'];
+  const middleEast = ['Israel', 'Jordan', 'Oman', 'Qatar', 'UAE', 'Dubai', 'Egypt'];
+  const cruises = ['Cordelia Cruises'];
+  const honeymoon = ['Maldives', 'Bali', 'Mauritius', 'Phuket', 'Switzerland', 'Seychelles', 'Langkawi', 'Paris', 'Italy', 'Krabi', 'Greece', 'Thailand', 'Dubai', 'Sri Lanka', 'Singapore', 'Malaysia', 'Croatia', 'South Africa', 'Koh Samui', 'Australia', 'Spain', 'Europe'];
+
+  return (
+    <nav className="bg-white sticky top-0 z-50 shadow-sm border-b border-gray-100">
+      <div className="max-w-7xl mx-auto flex justify-between items-center h-20 relative">
+        {/* Logo Area */}
+        <div 
+          onClick={() => setCurrentPage('home')}
+          className="bg-[#FFCC00] h-full flex items-center justify-center px-6 lg:px-8 cursor-pointer shrink-0"
+        >
+          <div className="text-black font-black text-xl lg:text-2xl tracking-tighter leading-none flex flex-col items-center">
+            <span>LUMA HOLIDAYS</span>
+            <span className="text-[9px] lg:text-[10px] tracking-widest font-normal uppercase mt-1">Sri Lanka's No.1</span>
+          </div>
+        </div>
+        
+        {/* Navigation Links with Mega Menu */}
+        <div className="hidden lg:flex font-bold text-[12px] xl:text-[13px] tracking-wide h-full items-center text-gray-800 ml-auto">
+          <button onClick={() => setCurrentPage('home')} className="px-2 xl:px-4 h-full hover:text-yellow-500 transition uppercase">HOME</button>
+          <button className="px-2 xl:px-4 h-full hover:text-yellow-500 transition uppercase">COMPANY</button>
+          <button className="px-2 xl:px-4 h-full hover:text-yellow-500 transition uppercase">GROUP TOURS</button>
+          
+          {/* Packages Dropdown Trigger */}
+          <div className="group h-full flex items-center static">
+            <button 
+              className={`px-4 xl:px-6 h-full flex items-center transition-colors uppercase ${(currentPage === 'asia' || currentPage === 'europe') ? 'bg-[#FFCC00] text-black' : 'group-hover:bg-[#FFCC00] group-hover:text-black'}`}
+            >
+              PACKAGES
+            </button>
+
+            {/* Mega Menu Container */}
+            <div className="absolute top-20 left-0 w-full bg-white shadow-2xl border-t-2 border-yellow-400 p-8 rounded-b-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 grid grid-cols-5 gap-6 xl:gap-8 cursor-default z-50 max-h-[85vh] overflow-y-auto text-left">
+              
+              {/* Column 1 */}
+              <div>
+                <MegaMenuSection title="Africa" items={africa} />
+                <MegaMenuSection title="America" items={america} />
+                <MegaMenuSection title="Pacific" items={pacific} />
+              </div>
+
+              {/* Column 2 */}
+              <div>
+                <MegaMenuSection 
+                  title="Asia" 
+                  items={asia} 
+                  highlight={currentPage === 'asia'} 
+                  onTitleClick={() => setCurrentPage('asia')}
+                />
+              </div>
+
+              {/* Column 3 */}
+              <div>
+                <MegaMenuSection 
+                  title="Europe" 
+                  items={europe} 
+                  highlight={currentPage === 'europe'} 
+                  onTitleClick={() => setCurrentPage('europe')}
+                />
+              </div>
+
+              {/* Column 4 */}
+              <div>
+                <MegaMenuSection title="Island" items={island} />
+                <MegaMenuSection title="Middle East" items={middleEast} />
+                <MegaMenuSection title="Cruises" items={cruises} />
+              </div>
+
+              {/* Column 5 */}
+              <div className="flex flex-col h-full">
+                <MegaMenuSection title="Honeymoon" items={honeymoon} />
+                <div className="mt-auto pt-6 pb-2">
+                  <button className="w-full bg-[#111] text-[#FFCC00] font-bold py-3 px-4 rounded-sm text-sm hover:bg-black transition-colors shadow-md">
+                    View All Packages
+                  </button>
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+          <button className="px-2 xl:px-4 h-full hover:text-yellow-500 transition uppercase">INDIA</button>
+          <button className="px-2 xl:px-4 h-full hover:text-yellow-500 transition uppercase">HONEYMOON</button>
+          <button className="px-2 xl:px-4 h-full hover:text-yellow-500 transition uppercase">WEDDING</button>
+          <button className="px-2 xl:px-4 h-full hover:text-yellow-500 transition uppercase">CONTACT</button>
         </div>
       </div>
-      
-      {/* Links */}
-      <div className="hidden lg:flex gap-8 font-semibold text-sm">
-        <button onClick={() => setCurrentPage('home')} className={`${currentPage === 'home' ? 'text-yellow-500 border-b-2 border-yellow-500 pb-1' : 'hover:text-yellow-500 transition'}`}>HOME</button>
-        <button className="hover:text-yellow-500 transition">ABOUT US</button>
-        <button className="hover:text-yellow-500 transition">DESTINATIONS</button>
-        <button className="hover:text-yellow-500 transition">TOURS</button>
-        <button onClick={() => setCurrentPage('asia')} className={`${currentPage === 'asia' ? 'text-yellow-500 border-b-2 border-yellow-500 pb-1' : 'hover:text-yellow-500 transition'}`}>PACKAGES</button>
-        <button className="hover:text-yellow-500 transition">CONTACT US</button>
-      </div>
-
-      {/* Right Button */}
-      <div className="hidden md:flex items-center gap-4 pr-4">
-        {currentPage === 'home' ? (
-          <button className="bg-black text-white text-sm font-bold py-2 px-6 rounded-md hover:bg-yellow-500 hover:text-black transition">
-            ENQUIRE NOW
-          </button>
-        ) : (
-          <div className="flex items-center gap-2 font-bold text-sm bg-yellow-50 px-4 py-2 rounded-md border border-yellow-200">
-            <Phone size={16} className="text-yellow-600" />
-            <span className="text-yellow-700">+94 77 123 4567</span>
-          </div>
-        )}
-      </div>
-    </div>
-  </nav>
-);
+    </nav>
+  );
+};
 
 const Footer = () => (
   <>
@@ -364,32 +466,6 @@ const HomePage = ({ setCurrentPage }) => {
 // ASIA DESTINATION PAGE COMPONENT
 // ==========================================
 const AsiaPage = ({ setCurrentPage }) => {
-  const TourPackageCard = ({ image, title, duration }) => (
-    <div className="bg-white rounded-lg overflow-hidden shadow-sm border border-gray-100 group cursor-pointer hover:shadow-md transition-shadow">
-      <div className="h-48 overflow-hidden relative">
-        <img src={image} alt={title} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
-      </div>
-      <div className="p-4">
-        <h3 className="font-bold text-gray-800 text-sm mb-3 leading-snug group-hover:text-yellow-600 transition-colors">{title}</h3>
-        <div className="flex items-center gap-2 text-yellow-500 text-xs font-semibold">
-          <Clock size={14} /><span>{duration}</span>
-        </div>
-      </div>
-    </div>
-  );
-
-  const PopularDestinationCard = ({ image, title, className }) => (
-    <div className={`relative group overflow-hidden cursor-pointer ${className}`}>
-      <img src={image} alt={title} className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" />
-      <div className="absolute inset-0 bg-black/30 group-hover:bg-black/50 transition-colors duration-300"></div>
-      <div className="absolute inset-0 flex items-center justify-center">
-        <h3 className="text-white text-xl md:text-3xl font-serif font-bold tracking-wide drop-shadow-lg text-center px-4">
-          {title} <br/> <span className="text-yellow-400 text-sm md:text-lg font-sans uppercase tracking-widest mt-2 block opacity-0 group-hover:opacity-100 transition-opacity duration-300">Explore</span>
-        </h3>
-      </div>
-    </div>
-  );
-
   return (
     <main className="max-w-7xl mx-auto px-4 py-8">
       {/* Breadcrumbs */}
@@ -631,6 +707,250 @@ const AsiaPage = ({ setCurrentPage }) => {
 };
 
 // ==========================================
+// EUROPE DESTINATION PAGE COMPONENT
+// ==========================================
+const EuropePage = ({ setCurrentPage }) => {
+  return (
+    <main className="max-w-7xl mx-auto px-4 py-8">
+      {/* Breadcrumbs */}
+      <div className="text-xs text-gray-500 mb-6 flex items-center gap-2">
+        <button onClick={() => setCurrentPage('home')} className="hover:text-yellow-500">Home</button>
+        <ChevronRight size={12} />
+        <span className="hover:text-yellow-500 cursor-pointer">Packages</span>
+        <ChevronRight size={12} />
+        <span className="hover:text-yellow-500 cursor-pointer">International Packages</span>
+        <ChevronRight size={12} />
+        <span className="text-gray-800 font-medium">Europe Tour Packages</span>
+      </div>
+
+      {/* Page Header */}
+      <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-8 gap-6">
+        <div className="flex items-start gap-6">
+          <div className="text-center">
+            <div className="text-4xl font-black text-yellow-400 leading-none">65+</div>
+            <div className="text-xs font-bold text-gray-500 uppercase tracking-widest mt-1">Tour<br/>Packages</div>
+          </div>
+          <div>
+            <h1 className="text-3xl md:text-4xl font-serif font-bold text-gray-900 mb-2">Europe Tour Packages</h1>
+            <div className="flex items-center gap-2 text-sm bg-gray-50 inline-flex px-3 py-1 rounded-full border border-gray-100">
+              <span className="font-bold text-gray-800">4.9/5</span>
+              <div className="flex text-yellow-400">
+                <Star size={14} fill="currentColor" /><Star size={14} fill="currentColor" /><Star size={14} fill="currentColor" /><Star size={14} fill="currentColor" /><Star size={14} fill="currentColor" />
+              </div>
+              <span className="text-gray-500 ml-1">based on 1500+ reviews</span>
+            </div>
+          </div>
+        </div>
+        <div className="flex gap-3 w-full md:w-auto">
+          <button className="flex-1 md:flex-none bg-yellow-400 text-black px-6 py-2.5 rounded text-sm font-bold shadow-sm hover:bg-yellow-500 transition">Enquire Now</button>
+          <button className="flex-1 md:flex-none bg-teal-500 text-white px-6 py-2.5 rounded text-sm font-bold shadow-sm flex items-center justify-center gap-2 hover:bg-teal-600 transition">
+            <Download size={16} /> Download Brochure
+          </button>
+        </div>
+      </div>
+
+      {/* Hero Section Grid */}
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 lg:gap-12 mb-16 items-start">
+        <div className="lg:col-span-2 flex flex-col">
+          <div className="rounded-2xl overflow-hidden h-[350px] md:h-[450px] mb-5">
+            <img src="https://images.unsplash.com/photo-1499856871958-5b9627545d1a?auto=format&fit=crop&q=80&w=1200" alt="Europe Panorama" className="w-full h-full object-cover" />
+          </div>
+          <div className="flex flex-col sm:flex-row justify-between items-center bg-white gap-4">
+            <div className="text-gray-900 text-sm md:text-base">
+              <span className="font-bold">One of the Architectural Wonders: </span>
+              <span className="font-normal text-gray-600">The Eiffel Tower, Paris</span>
+            </div>
+            <button className="bg-[#FFCC00] text-black px-8 py-3 rounded-md text-sm font-medium hover:bg-yellow-500 transition w-full sm:w-auto shadow-sm">
+              View All Packages
+            </button>
+          </div>
+        </div>
+
+        <div className="flex flex-col gap-10">
+          <div className="bg-[#fcfcfc] border border-gray-100 rounded-xl p-6 shadow-sm">
+            <h3 className="font-serif text-xl text-gray-900 pb-4 border-b border-gray-200 mb-5">Sri Lanka's No.1 Travel Brand</h3>
+            <div className="grid grid-cols-2 gap-y-6 gap-x-4">
+              <div><p className="font-medium text-gray-900 text-base">Mont Blanc</p><p className="text-xs text-gray-500 mt-1">Highest Peak</p></div>
+              <div><p className="font-medium text-gray-900 text-base">Volga</p><p className="text-xs text-gray-500 mt-1">Longest River</p></div>
+              <div><p className="font-medium text-gray-900 text-base">Great Britain</p><p className="text-xs text-gray-500 mt-1">Largest Island</p></div>
+              <div><p className="font-medium text-gray-900 text-base">Lake Ladoga</p><p className="text-xs text-gray-500 mt-1">Largest Lake</p></div>
+            </div>
+          </div>
+          <div>
+            <h3 className="font-serif text-[1.35rem] text-gray-900 mb-6">Essential Tips for Travelling to Europe</h3>
+            <div className="space-y-5">
+              <div className="flex gap-4 items-center">
+                <div className="w-9 h-9 rounded-full bg-[#FFCC00] flex items-center justify-center shrink-0"><Map size={18} className="text-black" /></div>
+                <p className="text-sm text-gray-500 leading-snug">The Schengen Visa allows seamless travel across 27 European countries.</p>
+              </div>
+              <div className="flex gap-4 items-center">
+                <div className="w-9 h-9 rounded-full bg-[#FFCC00] flex items-center justify-center shrink-0"><TreePine size={18} className="text-black" /></div>
+                <p className="text-sm text-gray-500 leading-snug">Summer is peak season; shoulder seasons offer great weather and fewer crowds.</p>
+              </div>
+              <div className="flex gap-4 items-center">
+                <div className="w-9 h-9 rounded-full bg-[#FFCC00] flex items-center justify-center shrink-0"><Clock size={18} className="text-black" /></div>
+                <p className="text-sm text-gray-500 leading-snug">Eurail trains are often the fastest and most scenic way to travel between major cities.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* Visitor Statistics Section */}
+      <section className="mb-20">
+        <h2 className="text-[1.75rem] font-serif text-[#1e1e24] mb-8">Europe - Visitors Statistics</h2>
+        
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-y-10 gap-x-4 lg:gap-x-6 xl:gap-x-8 items-center bg-white border border-gray-100 rounded-xl p-6 xl:p-8 shadow-sm">
+          
+          {/* Column 1: Map */}
+          <div className="flex justify-center md:border-r border-transparent min-w-0">
+            <img 
+              src="https://www.svgrepo.com/show/296996/europe-map.svg" 
+              alt="Europe Map" 
+              className="w-full max-w-[140px] xl:max-w-[160px] opacity-90"
+              style={{ filter: 'brightness(0) saturate(100%) invert(18%) sepia(19%) saturate(1081%) hue-rotate(205deg) brightness(96%) contrast(89%)' }} 
+              onError={(e) => {
+                e.target.onerror = null;
+                e.target.src = "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b8/Europe_blank_map.png/800px-Europe_blank_map.png";
+              }}
+            />
+          </div>
+
+          {/* Column 2: Annually */}
+          <div className="md:border-l border-yellow-400 md:pl-4 xl:pl-8 h-full flex flex-col justify-center min-w-0">
+            <h4 className="text-base xl:text-lg text-gray-800 mb-2 font-medium">Annually</h4>
+            <p className="text-3xl xl:text-[2.5rem] font-bold text-[#1e1e24] mb-6 tracking-tighter truncate" title="70,00,00,000">70,00,00,000</p>
+            <div className="flex items-center gap-3 xl:gap-6">
+              <div className="flex items-center gap-2">
+                 <div className="text-yellow-400"><User size={28} className="fill-current w-6 h-6 xl:w-8 xl:h-8" /></div>
+                 <div>
+                   <p className="text-[10px] xl:text-xs text-gray-500 font-bold uppercase mb-0.5">Male</p>
+                   <p className="text-sm xl:text-lg font-bold text-gray-800 leading-none">48%</p>
+                 </div>
+              </div>
+              <div className="flex items-center gap-2">
+                 <div className="text-[#3b3a4a]"><User size={28} className="fill-current w-6 h-6 xl:w-8 xl:h-8" /></div>
+                 <div>
+                   <p className="text-[10px] xl:text-xs text-gray-500 font-bold uppercase mb-0.5">Female</p>
+                   <p className="text-sm xl:text-lg font-bold text-gray-800 leading-none">52%</p>
+                 </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Column 3: By Purpose */}
+          <div className="md:border-l border-yellow-400 md:pl-4 xl:pl-8 h-full flex flex-col justify-center min-w-0">
+            <h4 className="text-base xl:text-lg text-gray-800 mb-6 font-medium">By Purpose</h4>
+            <div className="space-y-6">
+              <div>
+                <div className="flex items-center gap-3 mb-2">
+                  <div className="text-[#1e1e24]">
+                    <Heart size={20} strokeWidth={1.5} className="xl:w-6 xl:h-6" />
+                  </div>
+                  <div className="min-w-0">
+                    <p className="font-bold text-[#1e1e24] leading-none mb-1 text-sm xl:text-base truncate">Couples</p>
+                    <p className="text-[11px] xl:text-[13px] text-gray-500 leading-none truncate">For Honeymoons</p>
+                  </div>
+                </div>
+                <div className="w-full bg-gray-200 rounded-full h-1.5">
+                  <div className="bg-yellow-400 h-1.5 rounded-full" style={{ width: '70%' }}></div>
+                </div>
+              </div>
+              
+              <div>
+                <div className="flex items-center gap-3 mb-2">
+                  <div className="text-[#1e1e24]">
+                    <Baby size={20} strokeWidth={1.5} className="xl:w-6 xl:h-6" />
+                  </div>
+                  <div className="min-w-0">
+                    <p className="font-bold text-[#1e1e24] leading-none mb-1 text-sm xl:text-base truncate">Family</p>
+                    <p className="text-[11px] xl:text-[13px] text-gray-500 leading-none truncate">For Summer Vacations</p>
+                  </div>
+                </div>
+                <div className="w-full bg-gray-200 rounded-full h-1.5">
+                  <div className="bg-yellow-400 h-1.5 rounded-full" style={{ width: '30%' }}></div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Column 4: Top Visitors from Sri Lanka */}
+          <div className="md:border-l border-yellow-400 md:pl-4 xl:pl-8 h-full flex flex-col justify-center min-w-0">
+            <h4 className="text-base xl:text-lg text-gray-800 mb-6 font-medium">Top Visitors from Sri Lanka</h4>
+            <ul className="grid grid-cols-2 gap-y-3 xl:gap-y-4 gap-x-2 xl:gap-x-4 text-[13px] xl:text-[15px] text-[#1e1e24] font-medium">
+              <li className="flex items-center gap-2 truncate"><span className="w-1.5 h-1.5 xl:w-2 xl:h-2 rounded-full bg-yellow-400 shrink-0"></span> Colombo</li>
+              <li className="flex items-center gap-2 truncate"><span className="w-1.5 h-1.5 xl:w-2 xl:h-2 rounded-full bg-yellow-400 shrink-0"></span> Kandy</li>
+              <li className="flex items-center gap-2 truncate"><span className="w-1.5 h-1.5 xl:w-2 xl:h-2 rounded-full bg-yellow-400 shrink-0"></span> Gampaha</li>
+              <li className="flex items-center gap-2 truncate"><span className="w-1.5 h-1.5 xl:w-2 xl:h-2 rounded-full bg-yellow-400 shrink-0"></span> Galle</li>
+              <li className="flex items-center gap-2 truncate"><span className="w-1.5 h-1.5 xl:w-2 xl:h-2 rounded-full bg-yellow-400 shrink-0"></span> Negombo</li>
+              <li className="flex items-center gap-2 truncate"><span className="w-1.5 h-1.5 xl:w-2 xl:h-2 rounded-full bg-yellow-400 shrink-0"></span> Kurunegala</li>
+              <li className="flex items-center gap-2 truncate"><span className="w-1.5 h-1.5 xl:w-2 xl:h-2 rounded-full bg-yellow-400 shrink-0"></span> Jaffna</li>
+              <li className="flex items-center gap-2 truncate"><span className="w-1.5 h-1.5 xl:w-2 xl:h-2 rounded-full bg-yellow-400 shrink-0"></span> Matara</li>
+            </ul>
+          </div>
+
+        </div>
+      </section>
+
+      {/* Tour Packages Grid */}
+      <section className="mb-20">
+        <h2 className="text-2xl font-serif font-bold text-gray-900 mb-8 border-b border-gray-200 pb-3">View All Europe Tour Packages</h2>
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            <TourPackageCard image="https://images.unsplash.com/photo-1502602898657-3e907601ab2a?auto=format&fit=crop&q=80&w=600" title="Romantic Paris & Swiss Alps" duration="6 Nights / 7 Days" />
+            <TourPackageCard image="https://images.unsplash.com/photo-1516483638261-f40889d0733a?auto=format&fit=crop&q=80&w=600" title="Italian Delights: Rome & Venice" duration="7 Nights / 8 Days" />
+            <TourPackageCard image="https://images.unsplash.com/photo-1533105079780-92b9be482077?auto=format&fit=crop&q=80&w=600" title="Best of Greece: Athens to Santorini" duration="8 Nights / 9 Days" />
+            <TourPackageCard image="https://images.unsplash.com/photo-1539037116277-4db20889f2d4?auto=format&fit=crop&q=80&w=600" title="Spain Explorer: Madrid & Barcelona" duration="5 Nights / 6 Days" />
+        </div>
+      </section>
+
+      {/* Popular Packages Grid (Masonry) */}
+      <section className="mb-20">
+        <h2 className="text-2xl font-serif font-bold text-gray-900 mb-8 border-b border-gray-200 pb-3">Popular European Destinations</h2>
+        <div className="grid grid-cols-1 md:grid-cols-6 gap-4 h-auto md:h-[600px]">
+            <PopularDestinationCard className="md:col-span-3 md:row-span-1 h-64 md:h-auto rounded-lg" image="https://images.unsplash.com/photo-1530122037265-a5f1f91d3b99?auto=format&fit=crop&q=80&w=800" title="Switzerland Tour Packages" />
+            <PopularDestinationCard className="md:col-span-3 md:row-span-1 h-64 md:h-auto rounded-lg" image="https://images.unsplash.com/photo-1502602898657-3e907601ab2a?auto=format&fit=crop&q=80&w=800" title="France Tour Packages" />
+            <PopularDestinationCard className="md:col-span-2 md:row-span-1 h-64 md:h-auto rounded-lg" image="https://images.unsplash.com/photo-1516483638261-f40889d0733a?auto=format&fit=crop&q=80&w=800" title="Italy Tour Packages" />
+            <PopularDestinationCard className="md:col-span-2 md:row-span-1 h-64 md:h-auto rounded-lg" image="https://images.unsplash.com/photo-1533105079780-92b9be482077?auto=format&fit=crop&q=80&w=800" title="Greece Tour Packages" />
+            <PopularDestinationCard className="md:col-span-2 md:row-span-1 h-64 md:h-auto rounded-lg" image="https://images.unsplash.com/photo-1539037116277-4db20889f2d4?auto=format&fit=crop&q=80&w=800" title="Spain Tour Packages" />
+        </div>
+      </section>
+
+      {/* Form */}
+      <section className="bg-gray-50 rounded-2xl border border-gray-100 overflow-hidden shadow-sm relative mb-10">
+        <div className="grid grid-cols-1 lg:grid-cols-2 relative z-10">
+          <div className="p-12 flex flex-col justify-center items-center text-center lg:border-r border-gray-200">
+            <h3 className="text-3xl font-serif font-bold text-gray-900 mb-10">Stay Connected!</h3>
+            <div className="mb-10">
+              <div className="w-12 h-12 bg-yellow-100 rounded-full flex items-center justify-center mx-auto text-yellow-600 mb-4"><Phone size={24} /></div>
+              <p className="text-gray-500 text-sm mb-1 uppercase tracking-widest font-bold">Call Us</p>
+              <p className="text-xl font-bold text-gray-800">+94 77 123 4567</p>
+            </div>
+            <div>
+              <div className="w-12 h-12 bg-yellow-100 rounded-full flex items-center justify-center mx-auto text-yellow-600 mb-4"><Mail size={24} /></div>
+              <p className="text-gray-500 text-sm mb-1 uppercase tracking-widest font-bold">Email Us</p>
+              <p className="text-xl font-bold text-gray-800">info@lumaholidays.com</p>
+            </div>
+          </div>
+          <div className="p-10 lg:p-12 bg-white">
+            <h3 className="text-2xl font-serif font-bold text-gray-900 mb-8 text-center">Book Your Dream Tour Today!</h3>
+            <form className="space-y-4">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <input type="text" placeholder="Name *" className="w-full border border-gray-300 px-4 py-3 rounded text-sm focus:outline-none focus:border-yellow-400" required />
+                <input type="email" placeholder="Email Address *" className="w-full border border-gray-300 px-4 py-3 rounded text-sm focus:outline-none focus:border-yellow-400" required />
+              </div>
+              <input type="text" placeholder="Tour Destination *" className="w-full border border-gray-300 px-4 py-3 rounded text-sm focus:outline-none focus:border-yellow-400" required />
+              <button type="button" className="w-full bg-yellow-400 text-black font-bold text-lg py-4 rounded shadow mt-4 hover:bg-yellow-500 transition">
+                SUBMIT
+              </button>
+            </form>
+          </div>
+        </div>
+      </section>
+    </main>
+  );
+};
+
+// ==========================================
 // MAIN APP (Handles routing between pages)
 // ==========================================
 export default function App() {
@@ -644,11 +964,9 @@ export default function App() {
       
       {/* Render the selected page */}
       <div className="flex-grow">
-        {currentPage === 'home' ? (
-          <HomePage setCurrentPage={setCurrentPage} />
-        ) : (
-          <AsiaPage setCurrentPage={setCurrentPage} />
-        )}
+        {currentPage === 'home' && <HomePage setCurrentPage={setCurrentPage} />}
+        {currentPage === 'asia' && <AsiaPage setCurrentPage={setCurrentPage} />}
+        {currentPage === 'europe' && <EuropePage setCurrentPage={setCurrentPage} />}
       </div>
 
       <Footer />
