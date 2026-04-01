@@ -1,9 +1,9 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { 
   MapPin, Phone, Mail, ChevronRight, Star, 
   Compass, User, Clock, Map, 
   Download, TreePine, Droplets,
-  Heart, Baby
+  Heart, Baby, Send, Globe2, Award, Users
 } from 'lucide-react';
 
 // ==========================================
@@ -277,6 +277,21 @@ const destinationData = {
     wonder: 'Uluwatu Temple',
     highlights: [{ label: 'Mount Agung', desc: 'Highest Peak' }, { label: 'Ayung', desc: 'Longest River' }, { label: 'Nusa Penida', desc: 'Largest Island' }, { label: 'Lake Batur', desc: 'Largest Lake' }],
     tips: ['Nyepi (Day of Silence) is strictly observed; the airport closes for 24 hours.', 'Dress modestly when visiting temples; sarongs are usually required.', 'Tap water is not safe to drink; always stick to bottled water.'],
+    facts: [
+      { icon: 'map', label: 'Capital', value: 'Denpasar' },
+      { icon: 'card', label: 'Currency', value: 'Indonesian Rupiah\n(IDR)' },
+      { icon: 'users', label: 'Population', value: '4,300,000' },
+      { icon: 'message', label: 'Language', value: 'Indonesian' },
+      { icon: 'clock', label: 'Time zone', value: 'GMT +8' },
+      { icon: 'plane', label: 'Flight duration', value: '4h 15m from\nColombo' }
+    ],
+    faqs: [
+      { question: "Do I need a visa to visit Bali from Sri Lanka?", answer: "Sri Lankan citizens typically need to apply for a B211A visit visa or check current eVisa eligibility before traveling to Indonesia. Our team can assist with this process." },
+      { question: "When is the best time to visit Bali?", answer: "The dry season from April to October is the best time to visit, offering sunny days perfect for beach hopping, surfing, and temple tours." },
+      { question: "Is Bali suitable for family vacations?", answer: "Absolutely! Bali offers family-friendly resorts, water parks, safe beaches, and engaging cultural activities for kids of all ages." },
+      { question: "Can I use USD in Bali?", answer: "While some major hotels might accept USD, it is highly recommended to use the local currency (Indonesian Rupiah - IDR) for daily transactions, restaurants, and shopping." },
+      { question: "What should I wear when visiting temples?", answer: "Both men and women must wear a sarong and a sash around the waist. Shoulders should also be covered to respect local Hindu customs." }
+    ],
     stats: { annually: '6,200,000+', male: '48%', female: '52%', couples: '85%', family: '55%', topVisitors: ['Colombo', 'Gampaha', 'Kandy', 'Negombo', 'Galle', 'Kurunegala', 'Matara', 'Jaffna'] }
   },
   'thailand': {
@@ -285,6 +300,21 @@ const destinationData = {
     wonder: 'The Grand Palace',
     highlights: [{ label: 'Doi Inthanon', desc: 'Highest Peak' }, { label: 'Chao Phraya', desc: 'Major River' }, { label: 'Phuket', desc: 'Largest Island' }, { label: 'Songkhla Lake', desc: 'Largest Lake' }],
     tips: ['Never touch anyone on the head, as it is considered sacred.', 'Always negotiate prices before getting into a Tuk-Tuk.', 'Look for street food stalls where locals are eating for the best quality.'],
+    facts: [
+      { icon: 'map', label: 'Capital', value: 'Bangkok' },
+      { icon: 'card', label: 'Currency', value: 'Thai Baht\n(THB)' },
+      { icon: 'users', label: 'Population', value: '71,600,000' },
+      { icon: 'message', label: 'Language', value: 'Thai' },
+      { icon: 'clock', label: 'Time zone', value: 'GMT +7' },
+      { icon: 'plane', label: 'Flight duration', value: '3h 30m from\nColombo' }
+    ],
+    faqs: [
+      { question: "Do Sri Lankans get visa-free entry to Thailand?", answer: "Thailand frequently offers visa-free entry or Visa on Arrival for Sri Lankan citizens for short stays. Please verify the latest regulations with us before your travel date." },
+      { question: "What is the best currency to carry?", answer: "Thai Baht (THB) is the official currency. It's best to carry US Dollars to exchange locally, or withdraw Baht directly from ATMs in Thailand." },
+      { question: "Is street food safe in Thailand?", answer: "Yes, Thai street food is generally safe, highly regulated, and delicious. Look for stalls with high turnover and locals queuing up to ensure maximum freshness." },
+      { question: "How many days are ideal for a Thailand trip?", answer: "A 5 to 7-day trip is ideal to comfortably cover Bangkok's city highlights and one tropical beach destination like Pattaya, Phuket, or Krabi." },
+      { question: "Do I need an international driving permit to rent a scooter?", answer: "Yes, an International Driving Permit (IDP) along with your valid Sri Lankan license is legally required to rent and ride scooters in Thailand." }
+    ],
     stats: { annually: '39,800,000+', male: '55%', female: '45%', couples: '70%', family: '50%', topVisitors: ['Colombo', 'Gampaha', 'Kandy', 'Kurunegala', 'Negombo', 'Galle', 'Matara', 'Jaffna'] }
   },
   'singapore': {
@@ -293,6 +323,21 @@ const destinationData = {
     wonder: 'Marina Bay Sands',
     highlights: [{ label: 'Bukit Timah', desc: 'Highest Point' }, { label: 'Kallang River', desc: 'Longest River' }, { label: 'Pulau Tekong', desc: 'Largest Island' }, { label: 'Marina Reservoir', desc: 'Largest Reservoir' }],
     tips: ['Chewing gum is banned and heavily fined.', 'The MRT (subway) is the most efficient way to get around.', 'Eat at Hawker Centres for cheap, authentic local food.'],
+    facts: [
+      { icon: 'map', label: 'Capital', value: 'Singapore' },
+      { icon: 'card', label: 'Currency', value: 'Singapore Dollar\n(SGD)' },
+      { icon: 'users', label: 'Population', value: '5,450,000' },
+      { icon: 'message', label: 'Language', value: 'English, Malay,\nMandarin, Tamil' },
+      { icon: 'clock', label: 'Time zone', value: 'GMT +8' },
+      { icon: 'plane', label: 'Flight duration', value: '4h 0m from\nColombo' }
+    ],
+    faqs: [
+      { question: "How do I get a visa for Singapore?", answer: "Sri Lankan passport holders require a visa to enter Singapore. Luma Holidays can assist you with the eVisa application process when you book a package with us." },
+      { question: "Is Singapore expensive for tourists?", answer: "Singapore is relatively pricier than its neighbors, but you can easily manage costs by eating at Hawker Centres and using the excellent, affordable public MRT system." },
+      { question: "What is the weather like in Singapore?", answer: "Singapore is tropical, hot, and humid year-round. Expect sudden, brief rain showers even during the drier months, so always carry a light umbrella." },
+      { question: "Are there strict laws I should know about?", answer: "Yes, Singapore is famous for its strict laws against littering, jaywalking, and chewing gum. Smoking is also highly restricted in many public areas." },
+      { question: "Can I drink tap water in Singapore?", answer: "Yes, the tap water in Singapore is completely safe to drink straight from the tap and meets all World Health Organization guidelines." }
+    ],
     stats: { annually: '19,100,000+', male: '51%', female: '49%', couples: '60%', family: '85%', topVisitors: ['Colombo', 'Kandy', 'Gampaha', 'Galle', 'Negombo', 'Kurunegala', 'Jaffna', 'Matara'] }
   },
   'vietnam': {
@@ -301,6 +346,21 @@ const destinationData = {
     wonder: 'Halong Bay',
     highlights: [{ label: 'Fansipan', desc: 'Highest Peak' }, { label: 'Mekong', desc: 'Longest River' }, { label: 'Phu Quoc', desc: 'Largest Island' }, { label: 'Ba Be Lake', desc: 'Largest Lake' }],
     tips: ['When crossing the street, walk slowly and steadily.', 'Download the "Grab" app for safe and cheap rides.', 'Try Pho and Banh Mi from street vendors.'],
+    facts: [
+      { icon: 'map', label: 'Capital', value: 'Hanoi' },
+      { icon: 'card', label: 'Currency', value: 'Vietnam Dong\n(VND)' },
+      { icon: 'users', label: 'Population', value: '98,100,000' },
+      { icon: 'message', label: 'Language', value: 'Vietnamese' },
+      { icon: 'clock', label: 'Time zone', value: 'GMT +7' },
+      { icon: 'plane', label: 'Flight duration', value: '6h 30m from\nColombo' }
+    ],
+    faqs: [
+      { question: "Do I need a visa for Vietnam?", answer: "Yes, Sri Lankan citizens need a visa. The easiest way is to apply for a Vietnam eVisa online before your departure, which we can assist with." },
+      { question: "What is the best time to visit Vietnam?", answer: "Vietnam has diverse weather across regions. Generally, spring (February to April) and autumn (August to October) offer pleasant temperatures across the entire country." },
+      { question: "How much cash should I carry?", answer: "It's best to carry USD and exchange it for Vietnamese Dong (VND) at the airport or local gold shops. Credit cards are accepted in major hotels and upscale restaurants." },
+      { question: "Is it easy to travel from Hanoi to Ho Chi Minh City?", answer: "Yes, domestic flights are affordable and take about 2 hours. Alternatively, the Reunification Express train offers a highly scenic but much longer journey." },
+      { question: "What are the must-try dishes in Vietnam?", answer: "Pho (traditional noodle soup), Banh Mi (French-inspired baguette sandwich), and strong Vietnamese iced coffee are absolute must-tries during your stay." }
+    ],
     stats: { annually: '18,000,000+', male: '47%', female: '53%', couples: '65%', family: '45%', topVisitors: ['Colombo', 'Kandy', 'Negombo', 'Galle', 'Gampaha', 'Matara', 'Jaffna', 'Kurunegala'] }
   },
   'sri-lanka': {
@@ -309,6 +369,20 @@ const destinationData = {
     wonder: 'Sigiriya Rock Fortress',
     highlights: [{ label: 'Pidurutalagala', desc: 'Highest Peak' }, { label: 'Mahaweli', desc: 'Longest River' }, { label: 'Mannar', desc: 'Major Island' }, { label: 'Kala Wewa', desc: 'Largest Reservoir' }],
     tips: ['Always remove shoes and hats before entering Buddhist temples.', 'Do not turn your back to a Buddha statue for a photograph.', 'The train ride from Kandy to Ella is a must-do scenic journey.'],
+    facts: [
+      { icon: 'map', label: 'Capital', value: 'Sri Jayawardenepura\nKotte' },
+      { icon: 'card', label: 'Currency', value: 'Sri Lankan Rupee\n(LKR)' },
+      { icon: 'users', label: 'Population', value: '22,156,000' },
+      { icon: 'message', label: 'Language', value: 'Sinhala, Tamil' },
+      { icon: 'clock', label: 'Time zone', value: 'GMT +5:30' }
+    ],
+    faqs: [
+      { question: "When is the best time to explore Sri Lanka?", answer: "The west and south coasts are best from December to March, while the east coast is ideal from April to September, making it a great year-round destination." },
+      { question: "How do I get around the island?", answer: "For tourists, hiring a private car with a chauffeur-guide is the most comfortable and efficient way to travel. Scenic train rides are also highly recommended for the hill country." },
+      { question: "What wildlife can I see on safari?", answer: "Sri Lanka is famous for wild elephants, elusive leopards, sloth bears, and blue whales. Yala, Minneriya, and Udawalawe are top national parks for safaris." },
+      { question: "Do I need to cover up at the beach?", answer: "Beachwear is perfectly acceptable at resorts and tourist beaches. However, you must cover your shoulders and knees when visiting towns, villages, and temples." },
+      { question: "What is the local currency?", answer: "The Sri Lankan Rupee (LKR). ATMs are widely available across the country, and credit cards are accepted in most hotels, restaurants, and larger shops." }
+    ],
     stats: { annually: '2,000,000+', male: '45%', female: '55%', couples: '70%', family: '65%', topVisitors: ['India', 'UK', 'Russia', 'Germany', 'France', 'Australia', 'China', 'USA'] }
   }
 };
@@ -333,6 +407,24 @@ const CheckIcon = ({ size = 20, className = "" }) => (
 );
 const XIcon = ({ size = 20, className = "" }) => (
   <svg xmlns="http://www.w3.org/2000/svg" width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className={className}><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+);
+const CreditCardIcon = ({ size = 24, className = "" }) => (
+  <svg xmlns="http://www.w3.org/2000/svg" width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}><rect width="20" height="14" x="2" y="5" rx="2"/><line x1="2" x2="22" y1="10" y2="10"/></svg>
+);
+const MessageSquareIcon = ({ size = 24, className = "" }) => (
+  <svg xmlns="http://www.w3.org/2000/svg" width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+);
+const PlaneIcon = ({ size = 24, className = "" }) => (
+  <svg xmlns="http://www.w3.org/2000/svg" width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}><path d="M17.8 19.2 16 11l3.5-3.5C21 6 21.5 4 21 3c-1-.5-3 0-4.5 1.5L13 8 4.8 6.2c-.5-.1-.9.2-1.1.6L3 8l6 4-3 3-3.1-.9c-.4-.1-.8.1-1 .5L4 16l4 1.3 1.3 4c.4.2.9.2 1-.3l1.5-3.2 3-3 4 6l1.2-.7c.4-.2.7-.6.6-1.1z"/></svg>
+);
+const ChevronLeftIcon = ({ size = 24, className = "" }) => (
+  <svg xmlns="http://www.w3.org/2000/svg" width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}><path d="m15 18-6-6 6-6"/></svg>
+);
+const ChevronRightIcon = ({ size = 24, className = "" }) => (
+  <svg xmlns="http://www.w3.org/2000/svg" width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}><path d="m9 18 6-6-6-6"/></svg>
+);
+const UsersIcon = ({ size = 24, className = "" }) => (
+  <svg xmlns="http://www.w3.org/2000/svg" width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
 );
 
 // ==========================================
@@ -464,8 +556,8 @@ const Navbar = ({ currentPage, setCurrentPage }) => {
         
         {/* Navigation Links with Mega Menu */}
         <div className="hidden lg:flex font-bold text-[12px] xl:text-[13px] tracking-wide h-full items-center text-gray-800 ml-auto">
-          <button onClick={() => setCurrentPage('home')} className="px-2 xl:px-4 h-full hover:text-yellow-500 transition uppercase">HOME</button>
-          <button className="px-2 xl:px-4 h-full hover:text-yellow-500 transition uppercase">COMPANY</button>
+          <button onClick={() => setCurrentPage('home')} className={`px-2 xl:px-4 h-full transition uppercase ${currentPage === 'home' ? 'text-yellow-500 border-b-2 border-yellow-500 pb-1' : 'hover:text-yellow-500'}`}>HOME</button>
+          <button onClick={() => setCurrentPage('about')} className={`px-2 xl:px-4 h-full transition uppercase ${currentPage === 'about' ? 'text-yellow-500 border-b-2 border-yellow-500 pb-1' : 'hover:text-yellow-500'}`}>COMPANY</button>
           <button className="px-2 xl:px-4 h-full hover:text-yellow-500 transition uppercase">GROUP TOURS</button>
           
           {/* Packages Dropdown Trigger */}
@@ -537,7 +629,7 @@ const Navbar = ({ currentPage, setCurrentPage }) => {
             HONEYMOON
           </button>
           <button className="px-2 xl:px-4 h-full hover:text-yellow-500 transition uppercase">WEDDING</button>
-          <button className="px-2 xl:px-4 h-full hover:text-yellow-500 transition uppercase">CONTACT</button>
+          <button onClick={() => setCurrentPage('contact')} className={`px-2 xl:px-4 h-full transition uppercase ${currentPage === 'contact' ? 'text-yellow-500 border-b-2 border-yellow-500 pb-1' : 'hover:text-yellow-500'}`}>CONTACT</button>
         </div>
       </div>
     </nav>
@@ -738,6 +830,13 @@ const PackageDetailPage = ({ setCurrentPage, packageId }) => {
 // DYNAMIC DESTINATION PAGE
 // ==========================================
 const DestinationPage = ({ setCurrentPage, destId }) => {
+  const scrollRef = useRef(null);
+  const [openFaqIndex, setOpenFaqIndex] = useState(null);
+
+  const toggleFaq = (index) => {
+    setOpenFaqIndex(openFaqIndex === index ? null : index);
+  };
+
   const dest = destinationData[destId] || {
     name: destId.split('-').map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(' '),
     packagesCount: '10+',
@@ -745,11 +844,39 @@ const DestinationPage = ({ setCurrentPage, destId }) => {
     wonder: 'Local Heritage Sites',
     highlights: [{ label: 'Scenic Mountains', desc: 'Highest Peak' }, { label: 'Main River', desc: 'Longest River' }, { label: 'Coastal Islands', desc: 'Largest Island' }, { label: 'Central Lake', desc: 'Largest Lake' }],
     tips: ['Always carry a little local currency for small purchases.', 'Respect the local customs and dress codes.', 'Try the local street food for an authentic experience.'],
+    facts: [
+      { icon: 'map', label: 'Capital', value: 'Capital City' },
+      { icon: 'card', label: 'Currency', value: 'Local Currency' },
+      { icon: 'users', label: 'Population', value: '1,000,000+' },
+      { icon: 'clock', label: 'Time zone', value: 'GMT +0' }
+    ],
+    faqs: [
+      { question: "What is the best time to visit?", answer: "This destination is beautiful year-round, but generally, the dry season offers the best weather for outdoor activities." },
+      { question: "Do I need a visa to travel here?", answer: "Visa requirements depend on your nationality. Sri Lankan citizens should check the latest eVisa or Visa on Arrival updates." },
+      { question: "Is this destination family-friendly?", answer: "Yes! There are plenty of activities, family resorts, and safe attractions suitable for travelers of all ages." },
+      { question: "What currency should I carry?", answer: "It is always best to carry USD for easy exchange, but you should use the local currency for daily expenses." },
+      { question: "How many days are needed for a trip?", answer: "A typical holiday lasts between 5 to 7 days to fully experience the culture, sights, and local cuisine." }
+    ],
     stats: { annually: '5,000,000+', male: '50%', female: '50%', couples: '70%', family: '60%', topVisitors: ['Colombo', 'Kandy', 'Gampaha', 'Galle', 'Negombo', 'Kurunegala', 'Jaffna', 'Matara'] }
   };
 
   const destPackages = Object.entries(packagesData).filter(([key, pkg]) => pkg.country.toLowerCase() === dest.name.toLowerCase() && !pkg.isHoneymoon);
   const displayPackages = destPackages.length > 0 ? destPackages : Object.entries(packagesData).filter(([key, pkg]) => !pkg.isHoneymoon);
+
+  const scroll = (scrollOffset) => {
+    if (scrollRef.current) {
+      scrollRef.current.scrollBy({ left: scrollOffset, behavior: 'smooth' });
+    }
+  };
+
+  const iconMap = {
+    'map': MapPin,
+    'card': CreditCardIcon,
+    'users': UsersIcon,
+    'message': MessageSquareIcon,
+    'clock': Clock,
+    'plane': PlaneIcon
+  };
 
   return (
     <main className="max-w-7xl mx-auto px-4 py-8">
@@ -830,6 +957,53 @@ const DestinationPage = ({ setCurrentPage, destId }) => {
         </div>
       </div>
 
+      {/* Facts Slider Section */}
+      <section className="mb-20">
+        <h2 className="text-[1.75rem] font-serif font-bold text-[#1e1b4b] mb-8">Facts about {dest.name}</h2>
+        
+        <div className="relative group">
+          {/* Left Arrow */}
+          <button 
+            onClick={() => scroll(-250)} 
+            className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-4 w-12 h-12 bg-white rounded-full shadow-[0_4px_12px_rgba(0,0,0,0.1)] flex items-center justify-center z-10 text-[#1e1b4b] hover:text-blue-600 transition-colors hidden md:flex opacity-0 group-hover:opacity-100"
+          >
+            <ChevronLeftIcon size={24} />
+          </button>
+
+          {/* Scroll Container */}
+          <div 
+            ref={scrollRef} 
+            className="flex gap-6 overflow-x-auto snap-x snap-mandatory py-4 px-2"
+            style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
+          >
+            <style>{`
+              div::-webkit-scrollbar { display: none; }
+            `}</style>
+            
+            {dest.facts.map((fact, index) => {
+              const IconComponent = iconMap[fact.icon] || MapPin;
+              return (
+                <div key={index} className="min-w-[200px] h-[220px] shrink-0 snap-start bg-[#f9fafc] rounded-2xl p-6 flex flex-col items-center justify-center text-center border border-gray-100 shadow-sm transition-transform hover:-translate-y-1">
+                  <div className="text-[#1e1b4b] mb-4">
+                    <IconComponent size={28} strokeWidth={1.5} />
+                  </div>
+                  <p className="text-sm text-[#1e1b4b] mb-2">{fact.label}</p>
+                  <p className="text-xl font-bold text-[#1e1b4b] whitespace-pre-wrap leading-tight">{fact.value}</p>
+                </div>
+              );
+            })}
+          </div>
+
+          {/* Right Arrow */}
+          <button 
+            onClick={() => scroll(250)} 
+            className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-4 w-12 h-12 bg-white rounded-full shadow-[0_4px_12px_rgba(0,0,0,0.1)] flex items-center justify-center z-10 text-[#1e1b4b] hover:text-blue-600 transition-colors hidden md:flex opacity-0 group-hover:opacity-100"
+          >
+            <ChevronRightIcon size={24} />
+          </button>
+        </div>
+      </section>
+
       {/* Visitor Statistics Section */}
       <section className="mb-20">
         <h2 className="text-[1.75rem] font-serif text-[#1e1e24] mb-8">{dest.name} - Visitors Statistics</h2>
@@ -848,20 +1022,20 @@ const DestinationPage = ({ setCurrentPage, destId }) => {
 
           <div className="md:border-l border-yellow-400 md:pl-4 xl:pl-8 h-full flex flex-col justify-center min-w-0">
             <h4 className="text-base xl:text-lg text-gray-800 mb-2 font-medium">Annually</h4>
-            <p className="text-3xl xl:text-[2.5rem] font-bold text-[#1e1e24] mb-6 tracking-tighter truncate" title={dest.stats.annually}>{dest.stats.annually}</p>
+            <p className="text-3xl xl:text-[2.5rem] font-bold text-[#1e1e24] mb-6 tracking-tighter truncate" title={dest.stats?.annually}>{dest.stats?.annually}</p>
             <div className="flex items-center gap-3 xl:gap-6">
               <div className="flex items-center gap-2">
                  <div className="text-yellow-400"><User size={28} className="fill-current w-6 h-6 xl:w-8 xl:h-8" /></div>
                  <div>
                    <p className="text-[10px] xl:text-xs text-gray-500 font-bold uppercase mb-0.5">Male</p>
-                   <p className="text-sm xl:text-lg font-bold text-gray-800 leading-none">{dest.stats.male}</p>
+                   <p className="text-sm xl:text-lg font-bold text-gray-800 leading-none">{dest.stats?.male}</p>
                  </div>
               </div>
               <div className="flex items-center gap-2">
                  <div className="text-[#3b3a4a]"><User size={28} className="fill-current w-6 h-6 xl:w-8 xl:h-8" /></div>
                  <div>
                    <p className="text-[10px] xl:text-xs text-gray-500 font-bold uppercase mb-0.5">Female</p>
-                   <p className="text-sm xl:text-lg font-bold text-gray-800 leading-none">{dest.stats.female}</p>
+                   <p className="text-sm xl:text-lg font-bold text-gray-800 leading-none">{dest.stats?.female}</p>
                  </div>
               </div>
             </div>
@@ -879,7 +1053,7 @@ const DestinationPage = ({ setCurrentPage, destId }) => {
                   </div>
                 </div>
                 <div className="w-full bg-gray-200 rounded-full h-1.5">
-                  <div className="bg-yellow-400 h-1.5 rounded-full" style={{ width: dest.stats.couples }}></div>
+                  <div className="bg-yellow-400 h-1.5 rounded-full" style={{ width: dest.stats?.couples }}></div>
                 </div>
               </div>
               <div>
@@ -891,7 +1065,7 @@ const DestinationPage = ({ setCurrentPage, destId }) => {
                   </div>
                 </div>
                 <div className="w-full bg-gray-200 rounded-full h-1.5">
-                  <div className="bg-yellow-400 h-1.5 rounded-full" style={{ width: dest.stats.family }}></div>
+                  <div className="bg-yellow-400 h-1.5 rounded-full" style={{ width: dest.stats?.family }}></div>
                 </div>
               </div>
             </div>
@@ -900,7 +1074,7 @@ const DestinationPage = ({ setCurrentPage, destId }) => {
           <div className="md:border-l border-yellow-400 md:pl-4 xl:pl-8 h-full flex flex-col justify-center min-w-0">
             <h4 className="text-base xl:text-lg text-gray-800 mb-6 font-medium">Top Visitors from Sri Lanka</h4>
             <ul className="grid grid-cols-2 gap-y-3 xl:gap-y-4 gap-x-2 xl:gap-x-4 text-[13px] xl:text-[15px] text-[#1e1e24] font-medium">
-              {dest.stats.topVisitors.map((city, i) => (
+              {dest.stats?.topVisitors?.map((city, i) => (
                 <li key={i} className="flex items-center gap-2 truncate">
                   <span className="w-1.5 h-1.5 xl:w-2 xl:h-2 rounded-full bg-yellow-400 shrink-0"></span> {city}
                 </li>
@@ -928,15 +1102,32 @@ const DestinationPage = ({ setCurrentPage, destId }) => {
         </div>
       </section>
 
-      {/* Popular Packages Grid (Masonry) */}
-      <section className="mb-20">
-        <h2 className="text-2xl font-serif font-bold text-gray-900 mb-8 border-b border-gray-200 pb-3">Popular Packages</h2>
-        <div className="grid grid-cols-1 md:grid-cols-6 gap-4 h-auto md:h-[600px]">
-            <PopularDestinationCard onClick={() => setCurrentPage('pkg-thailand')} className="md:col-span-3 md:row-span-1 h-64 md:h-auto rounded-lg" image="https://images.unsplash.com/photo-1552465011-b4e21bf6e79a?auto=format&fit=crop&q=80&w=800" title="Thailand Tour Packages" />
-            <PopularDestinationCard onClick={() => setCurrentPage('pkg-bali')} className="md:col-span-3 md:row-span-1 h-64 md:h-auto rounded-lg" image="https://images.unsplash.com/photo-1537996194471-e657df975ab4?auto=format&fit=crop&q=80&w=800" title="Bali Tour Packages" />
-            <PopularDestinationCard onClick={() => setCurrentPage('dest-japan')} className="md:col-span-2 md:row-span-1 h-64 md:h-auto rounded-lg" image="https://images.unsplash.com/photo-1493976040374-85c8e12f0c0e?auto=format&fit=crop&q=80&w=800" title="Japan Tour Packages" />
-            <PopularDestinationCard onClick={() => setCurrentPage('pkg-vietnam')} className="md:col-span-2 md:row-span-1 h-64 md:h-auto rounded-lg" image="https://images.unsplash.com/photo-1528127269322-539801943592?auto=format&fit=crop&q=80&w=800" title="Vietnam Tour Packages" />
-            <PopularDestinationCard onClick={() => setCurrentPage('pkg-singapore')} className="md:col-span-2 md:row-span-1 h-64 md:h-auto rounded-lg" image="https://images.unsplash.com/photo-1525625293386-3f8f99389edd?auto=format&fit=crop&q=80&w=800" title="Singapore Tour Packages" />
+      {/* FAQs Section */}
+      <section className="mb-20 max-w-4xl mx-auto">
+        <h2 className="text-2xl font-serif font-bold text-center text-gray-900 mb-8">Frequently Asked Questions</h2>
+        <div className="space-y-4">
+          {dest.faqs.map((faq, index) => (
+            <div 
+              key={index} 
+              className="bg-white border border-gray-200 rounded-lg overflow-hidden shadow-sm hover:border-yellow-400 transition-colors"
+            >
+              <button 
+                onClick={() => toggleFaq(index)} 
+                className="w-full px-6 py-4 flex items-center justify-between focus:outline-none bg-white text-left"
+              >
+                <span className="font-semibold text-gray-900 pr-4">{faq.question}</span>
+                <span className={`text-yellow-500 shrink-0 transition-transform duration-300 ${openFaqIndex === index ? 'rotate-90' : ''}`}>
+                  <ChevronRight size={20} />
+                </span>
+              </button>
+              
+              <div 
+                className={`px-6 overflow-hidden transition-all duration-300 ease-in-out ${openFaqIndex === index ? 'max-h-48 py-4 border-t border-gray-100 opacity-100' : 'max-h-0 opacity-0'}`}
+              >
+                <p className="text-gray-600 text-sm leading-relaxed">{faq.answer}</p>
+              </div>
+            </div>
+          ))}
         </div>
       </section>
 
@@ -1072,6 +1263,223 @@ const HoneymoonPage = ({ setCurrentPage }) => {
   );
 };
 
+
+// ==========================================
+// ABOUT US PAGE COMPONENT
+// ==========================================
+const AboutPage = ({ setCurrentPage }) => {
+  return (
+    <main className="bg-gray-50 pb-16">
+      {/* Hero Section */}
+      <div className="relative h-[40vh] md:h-[50vh] overflow-hidden">
+        <img 
+          src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&q=80&w=2000" 
+          alt="About Us" 
+          className="w-full h-full object-cover" 
+        />
+        <div className="absolute inset-0 bg-black/50"></div>
+        <div className="absolute inset-0 flex flex-col items-center justify-center text-white text-center px-4">
+           <h1 className="text-4xl md:text-6xl font-serif font-bold mb-4 drop-shadow-md">Our Story</h1>
+           <p className="text-lg md:text-xl font-medium drop-shadow-md max-w-2xl">Discover the passion, people, and purpose behind Sri Lanka's leading travel brand.</p>
+        </div>
+      </div>
+
+      <div className="max-w-7xl mx-auto px-4 py-16">
+        {/* Breadcrumbs */}
+        <div className="text-xs text-gray-500 mb-10 flex items-center gap-2">
+          <button onClick={() => setCurrentPage('home')} className="hover:text-yellow-500">Home</button>
+          <ChevronRight size={12} />
+          <span className="text-gray-800 font-medium">About Us</span>
+        </div>
+
+        {/* Content Section */}
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center mb-20">
+          <div>
+            <h2 className="text-sm font-bold text-yellow-500 tracking-widest uppercase mb-2">Who We Are</h2>
+            <h3 className="text-3xl md:text-4xl font-serif font-bold text-gray-900 mb-6">Crafting Unforgettable Journeys Since 2010</h3>
+            <p className="text-gray-600 leading-relaxed mb-6">
+              At Luma Holidays, we believe that travel is more than just visiting a destination; it's about experiencing the world in a way that changes you forever. Founded over a decade ago in the heart of Colombo, we have grown from a small local agency into Sri Lanka's premier international travel operator.
+            </p>
+            <p className="text-gray-600 leading-relaxed mb-6">
+              Our dedicated team of travel enthusiasts, destination experts, and local guides work tirelessly to curate bespoke itineraries. Whether you're seeking a romantic honeymoon in the Maldives, an adventurous safari in Sri Lanka, or a cultural deep-dive in Japan, we handle every detail with precision and care.
+            </p>
+            <div className="flex gap-4">
+              <div className="bg-white p-4 rounded-lg shadow-sm border border-gray-100 flex-1 text-center">
+                <h4 className="text-3xl font-black text-yellow-500 mb-1">50K+</h4>
+                <p className="text-xs text-gray-500 font-bold uppercase">Happy Travelers</p>
+              </div>
+              <div className="bg-white p-4 rounded-lg shadow-sm border border-gray-100 flex-1 text-center">
+                <h4 className="text-3xl font-black text-yellow-500 mb-1">150+</h4>
+                <p className="text-xs text-gray-500 font-bold uppercase">Destinations</p>
+              </div>
+              <div className="bg-white p-4 rounded-lg shadow-sm border border-gray-100 flex-1 text-center">
+                <h4 className="text-3xl font-black text-yellow-500 mb-1">15+</h4>
+                <p className="text-xs text-gray-500 font-bold uppercase">Years Experience</p>
+              </div>
+            </div>
+          </div>
+          <div className="relative">
+            <img src="https://images.unsplash.com/photo-1506012787146-f92b2d7d6d96?auto=format&fit=crop&q=80&w=1200" alt="Travel Experience" className="rounded-2xl shadow-xl" />
+            <div className="absolute -bottom-8 -left-8 bg-yellow-400 p-8 rounded-2xl shadow-lg hidden md:block">
+              <h4 className="text-2xl font-black text-black mb-2">Award Winning</h4>
+              <p className="text-black font-medium">Recognized for Excellence<br/>in Hospitality.</p>
+            </div>
+          </div>
+        </div>
+
+        {/* Why Choose Us */}
+        <h2 className="text-center text-3xl font-serif font-bold text-gray-900 mb-12">Why Travel With Luma Holidays?</h2>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div className="bg-white p-8 rounded-xl shadow-sm border border-gray-100 text-center hover:shadow-md transition-shadow">
+            <div className="w-16 h-16 bg-yellow-50 text-yellow-500 flex items-center justify-center rounded-full mx-auto mb-6"><Globe2 size={32} /></div>
+            <h4 className="font-bold text-gray-900 text-lg mb-3">Global Expertise</h4>
+            <p className="text-sm text-gray-500 leading-relaxed">Our destination experts have traveled the globe to bring you firsthand knowledge and hidden gems.</p>
+          </div>
+          <div className="bg-white p-8 rounded-xl shadow-sm border border-gray-100 text-center hover:shadow-md transition-shadow">
+            <div className="w-16 h-16 bg-yellow-50 text-yellow-500 flex items-center justify-center rounded-full mx-auto mb-6"><Award size={32} /></div>
+            <h4 className="font-bold text-gray-900 text-lg mb-3">Premium Quality</h4>
+            <p className="text-sm text-gray-500 leading-relaxed">We partner exclusively with top-tier hotels, airlines, and local guides to ensure maximum comfort.</p>
+          </div>
+          <div className="bg-white p-8 rounded-xl shadow-sm border border-gray-100 text-center hover:shadow-md transition-shadow">
+            <div className="w-16 h-16 bg-yellow-50 text-yellow-500 flex items-center justify-center rounded-full mx-auto mb-6"><Users size={32} /></div>
+            <h4 className="font-bold text-gray-900 text-lg mb-3">Personalized Service</h4>
+            <p className="text-sm text-gray-500 leading-relaxed">No two travelers are alike. We customize every aspect of your itinerary to suit your preferences.</p>
+          </div>
+          <div className="bg-white p-8 rounded-xl shadow-sm border border-gray-100 text-center hover:shadow-md transition-shadow">
+            <div className="w-16 h-16 bg-yellow-50 text-yellow-500 flex items-center justify-center rounded-full mx-auto mb-6"><Phone size={32} /></div>
+            <h4 className="font-bold text-gray-900 text-lg mb-3">24/7 Support</h4>
+            <p className="text-sm text-gray-500 leading-relaxed">Travel with peace of mind knowing our dedicated support team is available around the clock.</p>
+          </div>
+        </div>
+      </div>
+    </main>
+  );
+};
+
+// ==========================================
+// CONTACT US PAGE COMPONENT
+// ==========================================
+const ContactPage = ({ setCurrentPage }) => {
+  return (
+    <main className="bg-gray-50 pb-16">
+      {/* Hero Section */}
+      <div className="relative h-[30vh] md:h-[40vh] overflow-hidden">
+        <img 
+          src="https://images.unsplash.com/photo-1423666639041-f56000c27a9a?auto=format&fit=crop&q=80&w=2000" 
+          alt="Contact Us" 
+          className="w-full h-full object-cover" 
+        />
+        <div className="absolute inset-0 bg-black/60"></div>
+        <div className="absolute inset-0 flex flex-col items-center justify-center text-white text-center px-4">
+           <h1 className="text-4xl md:text-5xl font-serif font-bold mb-4 drop-shadow-md">Get In Touch</h1>
+           <p className="text-lg font-medium drop-shadow-md">We're here to help you plan your next great adventure.</p>
+        </div>
+      </div>
+
+      <div className="max-w-7xl mx-auto px-4 py-16">
+        {/* Breadcrumbs */}
+        <div className="text-xs text-gray-500 mb-10 flex items-center gap-2">
+          <button onClick={() => setCurrentPage('home')} className="hover:text-yellow-500">Home</button>
+          <ChevronRight size={12} />
+          <span className="text-gray-800 font-medium">Contact Us</span>
+        </div>
+
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+          
+          {/* Contact Details (Left Col) */}
+          <div className="lg:col-span-1 space-y-6">
+            <div className="bg-white p-8 rounded-xl shadow-sm border border-gray-100">
+              <h3 className="text-xl font-bold text-gray-900 mb-6">Corporate Office</h3>
+              <div className="space-y-4">
+                <div className="flex items-start gap-4">
+                  <div className="bg-yellow-50 p-3 rounded-full text-yellow-600 shrink-0"><MapPin size={20} /></div>
+                  <div>
+                    <p className="font-bold text-gray-800 text-sm">Location</p>
+                    <p className="text-gray-500 text-sm mt-1">No 1, Luma Tower, Main Corporate Road,<br/>Colombo 03, Sri Lanka.</p>
+                  </div>
+                </div>
+                <div className="flex items-start gap-4">
+                  <div className="bg-yellow-50 p-3 rounded-full text-yellow-600 shrink-0"><Phone size={20} /></div>
+                  <div>
+                    <p className="font-bold text-gray-800 text-sm">Phone</p>
+                    <p className="text-gray-500 text-sm mt-1">+94 77 123 4567<br/>+94 11 234 5678</p>
+                  </div>
+                </div>
+                <div className="flex items-start gap-4">
+                  <div className="bg-yellow-50 p-3 rounded-full text-yellow-600 shrink-0"><Mail size={20} /></div>
+                  <div>
+                    <p className="font-bold text-gray-800 text-sm">Email</p>
+                    <p className="text-gray-500 text-sm mt-1">info@lumaholidays.com<br/>bookings@lumaholidays.com</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div className="bg-yellow-400 p-8 rounded-xl shadow-sm">
+              <h3 className="text-xl font-bold text-black mb-2">Looking for a Branch?</h3>
+              <p className="text-black/80 text-sm mb-6">We have offices in Kandy, Galle, Jaffna, and Negombo.</p>
+              <button className="bg-black text-white px-6 py-2.5 rounded text-sm font-bold w-full hover:bg-gray-800 transition">
+                VIEW ALL LOCATIONS
+              </button>
+            </div>
+          </div>
+
+          {/* Contact Form (Right Col) */}
+          <div className="lg:col-span-2">
+            <div className="bg-white p-8 md:p-12 rounded-xl shadow-sm border border-gray-100">
+              <h2 className="text-3xl font-serif font-bold text-gray-900 mb-2">Send us a Message</h2>
+              <p className="text-gray-500 text-sm mb-8">Fill out the form below and our travel experts will get back to you within 24 hours.</p>
+              
+              <form className="space-y-6">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  <div>
+                    <label className="block text-xs font-bold text-gray-700 uppercase mb-2">First Name</label>
+                    <input type="text" placeholder="John" className="w-full border border-gray-300 p-3 rounded-lg text-sm focus:outline-none focus:border-yellow-400 focus:ring-1 focus:ring-yellow-400" required />
+                  </div>
+                  <div>
+                    <label className="block text-xs font-bold text-gray-700 uppercase mb-2">Last Name</label>
+                    <input type="text" placeholder="Doe" className="w-full border border-gray-300 p-3 rounded-lg text-sm focus:outline-none focus:border-yellow-400 focus:ring-1 focus:ring-yellow-400" required />
+                  </div>
+                </div>
+
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  <div>
+                    <label className="block text-xs font-bold text-gray-700 uppercase mb-2">Email Address</label>
+                    <input type="email" placeholder="john@example.com" className="w-full border border-gray-300 p-3 rounded-lg text-sm focus:outline-none focus:border-yellow-400 focus:ring-1 focus:ring-yellow-400" required />
+                  </div>
+                  <div>
+                    <label className="block text-xs font-bold text-gray-700 uppercase mb-2">Phone Number</label>
+                    <input type="tel" placeholder="+94 77 000 0000" className="w-full border border-gray-300 p-3 rounded-lg text-sm focus:outline-none focus:border-yellow-400 focus:ring-1 focus:ring-yellow-400" required />
+                  </div>
+                </div>
+
+                <div>
+                  <label className="block text-xs font-bold text-gray-700 uppercase mb-2">Subject</label>
+                  <select className="w-full border border-gray-300 p-3 rounded-lg text-sm focus:outline-none focus:border-yellow-400 focus:ring-1 focus:ring-yellow-400 text-gray-700">
+                    <option>General Inquiry</option>
+                    <option>Tour Booking</option>
+                    <option>Custom Itinerary Request</option>
+                    <option>Corporate Travel</option>
+                  </select>
+                </div>
+
+                <div>
+                  <label className="block text-xs font-bold text-gray-700 uppercase mb-2">Message</label>
+                  <textarea placeholder="Tell us about your dream trip..." rows="5" className="w-full border border-gray-300 p-3 rounded-lg text-sm focus:outline-none focus:border-yellow-400 focus:ring-1 focus:ring-yellow-400" required></textarea>
+                </div>
+
+                <button type="button" className="bg-yellow-400 text-black font-bold py-4 px-8 rounded-lg hover:bg-yellow-500 transition shadow-md flex items-center justify-center gap-2 w-full md:w-auto">
+                  <Send size={18} /> SEND MESSAGE
+                </button>
+              </form>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </main>
+  );
+};
 
 // ==========================================
 // HOME PAGE COMPONENT
@@ -1246,6 +1654,11 @@ const HomePage = ({ setCurrentPage }) => {
 export default function App() {
   const [currentPage, setCurrentPage] = useState('home');
 
+  // Scroll to top whenever the page changes
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [currentPage]);
+
   return (
     <div className="font-sans text-gray-800 bg-white min-h-screen flex flex-col">
       <TopBar />
@@ -1256,6 +1669,9 @@ export default function App() {
         {currentPage === 'home' && <HomePage setCurrentPage={setCurrentPage} />}
         
         {currentPage === 'honeymoon' && <HoneymoonPage setCurrentPage={setCurrentPage} />}
+
+        {currentPage === 'about' && <AboutPage setCurrentPage={setCurrentPage} />}
+        {currentPage === 'contact' && <ContactPage setCurrentPage={setCurrentPage} />}
         
         {/* Dynamic Destination Pages (e.g. dest-bali, dest-thailand) */}
         {currentPage.startsWith('dest-') && (
